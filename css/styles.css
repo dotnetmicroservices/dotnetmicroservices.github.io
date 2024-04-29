@@ -142,6 +142,35 @@ a:hover {
 	text-decoration: underline;
 }
 
+.card .course-title {
+	transition: color 0.2s ease-in-out;
+}
+
+.card .course-title:hover {
+	color: #5f4dee;
+}
+
+.card.course:hover {
+	box-shadow: 0 0 10px #5f4dee;
+}
+
+.card .course-title.best-value  {
+	color: white;
+	transition: color 0.2s ease-in-out;
+}
+
+.card .course-title.best-value:hover {
+	color: #eb8a2f;
+}
+
+.card.best-value {
+	background-color: #5f4dee;
+}
+
+.card.course.best-value:hover {
+	box-shadow: 0 0 10px #eb8a2f;
+}
+
 .no-line {
 	text-decoration: none;
 }
@@ -197,18 +226,37 @@ a.white:hover {
 
 .btn-solid-lg {
 	display: inline-block;
-	padding: 1.5rem 2.5rem 1.5rem 2.5rem;
+	padding: 1rem 2rem 1rem 2rem;
 	border-radius: 32px;
 	background: linear-gradient(to right, #bf3333 33.33%, #d33737 66.33%, #f62d22 100%);
 	color: #ffffff;
-	font-weight: 600;
-	font-size: 1.5rem;
+	font-weight: 600;	
 	line-height: 1.5;
 	text-decoration: none;
 	transition: all 0.2s;
 }
 
 .btn-solid-lg:hover {
+	background: linear-gradient(to left, #bf3333 33.33%, #d33737 66.33%, #f62d22 100%);
+	color: #f3f7fd;
+	/* needs to stay here because of the forced color property of a tag */
+	text-decoration: none;
+}
+
+.btn-solid-lg-small-padding {
+	display: inline-block;
+	padding: 1.5rem 1.0rem 1.5rem 1.0rem;
+	border-radius: 32px;
+	background: linear-gradient(to right, #bf3333 33.33%, #d33737 66.33%, #f62d22 100%);
+	color: #ffffff;
+	font-weight: 600;
+	font-size: 1.2rem;
+	line-height: 0;
+	text-decoration: none;
+	transition: all 0.2s;
+}
+
+.btn-solid-lg-small-padding:hover {
 	background: linear-gradient(to left, #bf3333 33.33%, #d33737 66.33%, #f62d22 100%);
 	color: #f3f7fd;
 	/* needs to stay here because of the forced color property of a tag */
@@ -272,6 +320,27 @@ a.white:hover {
 }
 
 .btn-outline-lg:hover {
+	border: 1px solid #2f363b;
+	background-color: #2f363b;
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.btn-outline-lg-small-padding {
+	display: inline-block;
+	padding: 1.5rem 1.0rem 1.5rem 1.0rem;
+	border: 1px solid #2f363b;
+	border-radius: 32px;
+	background-color: transparent;
+	color: #2f363b;
+	font-weight: 600;
+	font-size: 1.2rem;
+	line-height: 0;
+	text-decoration: none;
+	transition: all 0.2s;
+}
+
+.btn-outline-lg-small-padding:hover {
 	border: 1px solid #2f363b;
 	background-color: #2f363b;
 	color: #ffffff;
@@ -515,6 +584,7 @@ input[type='checkbox'] {
 	line-height: 0.875rem;
 	box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.025);
 	min-width: 380px;
+	z-index: 100007;
 }
 
 .navbar .navbar-brand {
@@ -523,7 +593,7 @@ input[type='checkbox'] {
 }
 
 .navbar .logo-image img {
-	width: 76px;
+	/* width: 250px; */
 	height: 30px;
 }
 
@@ -641,6 +711,10 @@ input[type='checkbox'] {
 	font-size: 1.25rem;
 }
 
+/* .navbar.fixed-top {
+	top: 70px
+} */
+
 .red-value {
 	color: #BA1631;
 	font-weight: bold;
@@ -661,8 +735,7 @@ input[type='checkbox'] {
 .header {
 	position: relative;
 	overflow: hidden;
-	padding-top: 6.5rem;
-	padding-bottom: 3rem;
+	padding-top: 8.5rem;
 	background-color: #5f4dee;
 	text-align: center;
 }
@@ -854,6 +927,7 @@ input[type='checkbox'] {
 .gold-subheader {
 	text-align: center;
 	color: #eb8a2f;
+	font-weight: bold;
 }
 
 .basic-3 .full-price.best-value {
@@ -874,6 +948,13 @@ input[type='checkbox'] {
 	color: #eb8a2f
 }
 
+.header-newsletter {
+	position: relative;
+	overflow: hidden;
+	padding-top: 6.5rem;
+	background-color: #5f4dee;
+	text-align: center;
+}
 
 /********************/
 /*    Customers     */
@@ -1450,6 +1531,23 @@ input[type='checkbox'] {
 	font-size: 1.3rem;
 }
 
+.card-bottom-right-text {
+    /* display: inline-block; */
+    /* justify-content: flex-end; */
+    /* align-items: center; */
+    background-color: #d33737;
+    color: white;
+    padding: 7px;
+    font-weight: bold;
+	float: right;
+}
+
+.card-footer {
+    background-color: transparent;
+    border: none;
+	padding-top: 0;
+}
+
 /*******************/
 /*     Toggle Button     */
 /*******************/
@@ -2011,12 +2109,26 @@ a:hover.back-to-top {
 	line-height: 2rem
 }
 
+/*********************/
+/*     Others     */
+/*********************/
+
+#newsletter-iphone-mockup {
+	display: none;
+}
+
 /*************************/
 /*     Media Queries     */
 /*************************/
+/* Min-width 576px */
+@media (min-width: 576px) {	
+	.header-newsletter {
+		height: 88%
+	}	
+}
+
 /* Min-width 768px */
 @media (min-width: 768px) {
-
 
 	/* Footer */
 	.footer-decoration {
@@ -2038,7 +2150,9 @@ a:hover.back-to-top {
 	/* end of extra pages */
 
 	.btn-solid-lg {
-		line-height: 0;
+		line-height: 0;	
+		font-size: 1.5rem;	
+		padding: 1.5rem 2.5rem 1.5rem 2.5rem;
 	}
 
 	.btn-outline-lg {
@@ -2077,7 +2191,7 @@ a:hover.back-to-top {
 	.header .btn-solid-lg-container {
 		margin-top: 1rem;
 		margin-bottom: 1rem;
-	}
+	}	
 
 	/* Navigation */
 	.navbar {
@@ -2139,6 +2253,9 @@ a:hover.back-to-top {
 
 
 	/* Header */
+	.header {
+		padding-bottom: 3rem;
+	}
 
 	.header .text-container {
 		margin-bottom: 0;
@@ -2158,9 +2275,6 @@ a:hover.back-to-top {
 		/* transform: rotate(2deg); */
 		filter: drop-shadow(0px 30px 20px rgba(0, 0, 0, 0.2));
 	}
-
-	/* end of header */
-
 
 	/* Description */
 	.cards-1 .card {
@@ -2286,6 +2400,10 @@ a:hover.back-to-top {
 	.chapter-title .chapter-duration {
 		display: block;
 	}
+
+	#newsletter-iphone-mockup {
+		display: block;
+	}		
 }
 
 /* end of min-width 992px */
