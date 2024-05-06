@@ -67,13 +67,7 @@
         "@type": "Offer",
         "category": "Paid",
         "priceCurrency": "USD",
-        "price": 797
-      },
-      {
-        "@type": "Offer",
-        "category": "Subscription",
-        "priceCurrency": "USD",
-        "price": 97
+        "price": 497
       }],
       "hasCourseInstance": [
       {
@@ -2739,16 +2733,16 @@
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-sm-auto mb-2">
-                                    <span><strong>One-Time Payment</strong></span>
+                                    <span><strong>This Program</strong></span>
                                 </div>
                                 <div class="col-sm-auto">
                                     <label class="switch">
-                                        <input type="checkbox" id="checbox" onclick="check()" ; />
+                                        <input type="checkbox" onclick="check(this)" ; />
                                         <span class="slider round"></span>
                                     </label>
                                 </div>
                                 <div class="col-sm-auto">
-                                    <span"><strong>Subscription</strong></span>
+                                    <span"><strong>All Courses</strong></span>
                                 </div>
                             </div>
                         </div>
@@ -2765,7 +2759,7 @@
                             <div>
                                 <div>
                                     <span class="currency best-value">$</span>
-                                    <span class="value best-value">797</span>
+                                    <span class="value best-value">497</span>
                                 </div>
                                 <div class="frequency mb-4">one-time payment</div>
                             </div>
@@ -2850,7 +2844,7 @@
                             <div class="card-title mb-2">STANDARD</div>
                             <div>
                                 <div>
-                                    <span class="currency">$</span><span class="value">497</span>
+                                    <span class="currency">$</span><span class="value">297</span>
                                 </div>
                                 <div class="frequency mb-4">one-time payment</div>
                             </div>
@@ -2937,7 +2931,7 @@
                             <div class="card-title mb-2">BASIC</div>
                             <div>
                                 <div>
-                                    <span class="currency">$</span><span class="value">297</span>
+                                    <span class="currency">$</span><span class="value">197</span>
                                 </div>
                                 <div class="frequency mb-4">one-time payment</div>
                             </div>
@@ -3022,21 +3016,15 @@
                     <div class="card best-value">
                         <div class="card-body">
                             <div class="card-title best-value">ALL-ACCESS PASS</div>
-                            <div>
-                                <div>
-                                    <span class="currency best-value">$</span>
-                                    <span class=" value best-value">97</span><span class="frequency">/month</span>
-                                </div>
-                                <div class="frequency mb-4">full course library</div>
-                            </div>
+                            <div class="card-image d-flex align-items-center justify-content-center pl-2 pr-2">
+                                <img class="img-fluid" style="width: 100%; object-fit: contain;"
+                                    src="images/dotnet-academy-mockup.png" alt="alternative">
+                            </div>                            
+                            <div class="frequency mt-3 mb-4">full course library</div>
                             <div class="button-wrapper">
-                                <a id="one-time-payment-link" class="btn-solid-lg"
-                                    href="https://juliocasal.com/courses/all-access">LEARN MORE</a>
+                                <a id="one-time-payment-link" class="btn-solid-lg" href="https://juliocasal.com/courses/all-access">LEARN MORE</a>
                             </div>
                             <hr class="cell-divide-hr">
-                            <div class="card-image mb-4">
-                                <img class="img-fluid" src="images/dotnet-academy-mockup.png" alt="alternative">
-                            </div>
                             <ul class="list-unstyled li-space-lg">
                                 <li class="media">
                                     <i class="fas fa-check best-value"></i>
@@ -3056,7 +3044,7 @@
                                 </li>
                                 <li class="media">
                                     <i class="fas fa-check best-value"></i>
-                                    <div class="media-body">Community access</div>
+                                    <div class="media-body">Discord server access</div>
                                 </li>
                                 <li class="media">
                                     <i class="fas fa-check best-value"></i>
@@ -3235,29 +3223,7 @@
     <script src="js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
     <script src="js/scripts.js"></script> <!-- Custom scripts -->
     <script src="js/favicon.js"></script>
-
-    <script>
-        function check()
-        {
-            var checkBox = document.getElementById("checbox");
-            var text1 = document.getElementsByClassName("text1");
-            var text2 = document.getElementsByClassName("text2");
-
-            for (var i = 0; i < text2.length; i++)
-            {
-                if (checkBox.checked == true)
-                {
-                    text1[0].style.display = "block";
-                    text2[i].style.display = "none";
-                } else if (checkBox.checked == false)
-                {
-                    text1[0].style.display = "none";
-                    text2[i].style.display = "block";
-                }
-            }
-        }
-        check();
-    </script>
+    <script src="js/checkbox.js"></script>
 
 </body>
 
