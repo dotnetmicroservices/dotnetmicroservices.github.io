@@ -6,12 +6,12 @@ function check(element) {
 
     if (checkBox == null || !checkBox.checked) {
         for (var i = 0; i < text2.length; i++) {
-            text1[0].style.display = "none";
+            text1[i].style.display = "none";
             text2[i].style.display = "block";
         }
     } else {
         for (var i = 0; i < text2.length; i++) {
-            text1[0].style.display = "block";
+            text1[i].style.display = "block";
             text2[i].style.display = "none";
         }
     }
