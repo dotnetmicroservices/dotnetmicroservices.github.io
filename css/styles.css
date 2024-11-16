@@ -735,7 +735,7 @@ input[type='checkbox'] {
 .header {
 	position: relative;
 	overflow: hidden;
-	padding-top: 8.5rem;
+	padding-top: 6rem;
 	background-color: #5f4dee;
 	text-align: center;
 }
@@ -2041,7 +2041,6 @@ a:hover.back-to-top {
 /*************************/
 .accordion .card {
 	border: none;
-	min-width: 600px;
 }
 
 .accordion .card-body {
@@ -2125,6 +2124,27 @@ a:hover.back-to-top {
 	.header-newsletter {
 		height: 88%
 	}	
+}
+
+/* Max-width 768px */
+@media (max-width: 768px) {
+    .h2-heading {
+        font-size: 11vw; /* Adjusts font size based on viewport width */
+        line-height: 1.2;
+    }
+
+	.chapter-title span {
+		font-size: 1rem;
+	}
+
+	.lesson-title {
+		font-size: 1rem;
+	}
+
+	.btn.preview-button {
+		font-size: 0.8rem;
+		padding: 4px 6px;
+	}
 }
 
 /* Min-width 768px */
