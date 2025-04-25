@@ -16,8 +16,6 @@
         gtag('config', 'G-S82FPL60QH');
     </script>
 
-    <!-- <script src="https://cdn.paritydeals.com/banner.js"></script> -->
-
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
         var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
@@ -139,10 +137,9 @@
 <body data-spy="scroll" data-target=".fixed-top">
     <div class="fixed-top">
         <!-- Notification Bar -->
-        <!-- <div class="alert alert-info text-center mb-0" role="alert" style="background-color: #E56717; color: white">
-            Use Code <strong>SECURITY20</strong> At Checkout For 20% Off (One-Time Payment Only)
-        </div> -->
-        <div id="parity-deals"></div>
+        <div id="notification-banner" class="alert alert-info promo-alert text-center mb-0" role="alert"
+            style="background-color: #E56717; color: white; display: none;">
+        </div>
 
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark">
@@ -2726,13 +2723,24 @@
                     <div class="card best-value">
                         <div class="card-body">
                             <div class="card-title best-value">ONE-TIME PAYMENT</div>
-                            <div class="mb-2">
+                            <div id="full-price" class="mb-2">
                                 <div>
                                     <span class="currency best-value">$</span>
                                     <span class=" value best-value" style="font-size: 4.3rem;">497</span>
                                 </div>
                                 <div class="frequency mt-3 mb-4 one-time-payment">Lifetime Access</div>
                             </div>
+                            <div id="discounted-price" class="mb-2">
+                                <div>
+                                    <span class="currency best-value">$</span>
+                                    <span id="discounted-price-value" class="value best-value"
+                                        style="font-size: 4.3rem;"></span>
+                                </div>
+                                <div>
+                                    <span id="original-price" class="full-price">$497</span><span id="discount-amount"
+                                        class="save-value best-value">OFF</span>
+                                </div>
+                            </div>                            
                             <div class="button-wrapper">
                                 <a id="one-time-payment-link" class="btn-solid-lg"
                                     href="https://learn.dotnetacademy.io/enroll/2141091?price_id=2894278">START
@@ -3033,6 +3041,7 @@
     <script src="js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
     <script src="js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
     <script src="js/scripts.js"></script> <!-- Custom scripts -->
+    <script src="js/parity-deals.js"></script> <!-- Parity deals script -->    
     <script src="js/favicon.js"></script>
     <script src="js/navbar-collapse.js"></script>
 </body>
