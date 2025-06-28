@@ -11,8 +11,8 @@
     {
         // Global variable to store Parity Deals response data
         window.parityDealsInfo = {
-            couponCode: "", // Default coupon code (empty - no hardcoded coupon)
-            discountPercentage: "", // Default discount percentage (no decimals)
+            couponCode: "SUMMER22", // Default coupon code (empty - no hardcoded coupon)
+            discountPercentage: "22", // Default discount percentage (no decimals)
             discountDollars: "",  // Manual default discount in dollars (not provided by API)
             country: "", // Country from Parity Deals API
             couponFromAPI: false // Flag to track if coupon code came from API
@@ -62,12 +62,12 @@
                 discountText = `$${discountDollars}`;
             }
 
-            let bannerText = ``;
+            let bannerText = `☀️ Summer Sale: <strong>${discountText} OFF EVERYTHING</strong> • Ends&nbsp;July&nbsp;6`;
 
             // If coupon code came from the Parity Deals API, use the country-specific format
             if (window.parityDealsInfo.couponFromAPI)
             {
-                bannerText = `Price adjusted for your region (<strong>${country}</strong>) — Save <strong>${discountText}</strong> for a limited time`;
+                bannerText = `☀️ Summer Sale • Local pricing for ${country} applied — <strong>${discountText} OFF</strong> • Ends&nbsp;July&nbsp;6`;
             }
 
             notificationBanner.innerHTML = bannerText;

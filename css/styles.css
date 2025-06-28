@@ -2116,6 +2116,96 @@ a:hover.back-to-top {
 	display: none;
 }
 
+/* Countdown Timer Styling */
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px;
+}
+
+.countdown-value {
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, #5f4dee, #ff6a00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: #5f4dee;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    animation: pulse 1s infinite;
+}
+
+.countdown-value::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    z-index: -1;
+}
+
+.countdown-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #5f4dee;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+.ddio_countdown_wrap {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Responsive styles for countdown */
+@media (max-width: 768px) {
+    .countdown-container {
+        gap: 10px;
+    }
+
+    .countdown-item {
+        min-width: 70px;
+    }
+
+    .countdown-value {
+        font-size: 2.5rem;
+    }
+
+    .countdown-label {
+        font-size: 0.8rem;
+    }
+}
+
 /*************************/
 /*     Media Queries     */
 /*************************/
