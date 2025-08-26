@@ -12,20 +12,27 @@
         // Global variable to store Parity Deals response data
         window.parityDealsInfo = {
             couponCode: "", // Default coupon code (empty - no hardcoded coupon)
-            discountPercentage: "", // Default discount percentage (no decimals)
+            discountPercentage: "30", // Default discount percentage (no decimals)
             discountDollars: "",  // Manual default discount in dollars (not provided by API)
             country: "", // Country from Parity Deals API
             couponFromAPI: false // Flag to track if coupon code came from API
         };
 
         const paymentPlanContainer = document.getElementById('payment-plan-container');
-        const frequencyElement = document.querySelector('.one-time-payment');
         const fullPriceDiv = document.getElementById('full-price');
         const discountedPriceDiv = document.getElementById('discounted-price');
         const oneTimePaymentLink = document.getElementById('one-time-payment-link');
         const notificationBanner = document.getElementById('notification-banner');
+
+        // Payment plan elements
+        const paymentPlanLink = document.getElementById('payment-plan-link');
+        const paymentPlanFullPriceDiv = document.getElementById('payment-plan-full-price');
+        const paymentPlanDiscountedPriceDiv = document.getElementById('payment-plan-discounted-price');
+
         const originalHref = "https://learn.dotnetacademy.io/enroll/2141091?price_id=2894278";
+        const originalPaymentPlanHref = "https://learn.dotnetacademy.io/enroll/2141091?price_id=3960951";
         const originalPrice = 497; // Original price in dollars
+        const originalPaymentPlanPrice = 129; // Original payment plan price per month
 
         // Make sure banner is completely hidden by default (in case CSS doesn't do this)
         if (notificationBanner)
@@ -38,18 +45,16 @@
         {
             if (!notificationBanner) return;
 
-            const couponCode = window.parityDealsInfo.couponCode;
+            const discountPercentage = parseInt(window.parityDealsInfo.discountPercentage) || 0;
+            const discountDollars = window.parityDealsInfo.discountDollars;
+            const country = window.parityDealsInfo.country || "your country";
 
-            // If there's no coupon code, don't show the banner at all
-            if (!couponCode)
+            // Show banner if there's any discount available (percentage or dollar amount)
+            if (discountPercentage <= 0 && !discountDollars)
             {
                 notificationBanner.style.display = 'none';
                 return;
             }
-
-            const discountPercentage = parseInt(window.parityDealsInfo.discountPercentage) || 0;
-            const discountDollars = window.parityDealsInfo.discountDollars;
-            const country = window.parityDealsInfo.country || "your country";
 
             let discountText = "";
 
@@ -62,7 +67,7 @@
                 discountText = `$${discountDollars}`;
             }
 
-            let bannerText = `☀️ Summer Sale: <strong>${discountText} OFF EVERYTHING</strong> • Ends&nbsp;July&nbsp;6`;
+            let bannerText = `📚 Back to School Sale: <strong>${discountText} OFF EVERYTHING</strong> • Ends&nbsp;September&nbsp;2`;
 
             // If coupon code came from the Parity Deals API, use the country-specific format
             if (window.parityDealsInfo.couponFromAPI)
@@ -77,10 +82,12 @@
         // Function to update link with coupon code
         const updateCouponLink = function ()
         {
+            // Update one-time payment link
             if (oneTimePaymentLink)
             {
                 const couponCode = window.parityDealsInfo.couponCode;
-                if (couponCode)
+                // Only apply coupon if it exists AND came from the API
+                if (couponCode && window.parityDealsInfo.couponFromAPI)
                 {
                     oneTimePaymentLink.href = originalHref + "&coupon=" + couponCode;
                 } else
@@ -88,22 +95,38 @@
                     oneTimePaymentLink.href = originalHref;
                 }
             }
+
+            // Update payment plan link
+            if (paymentPlanLink)
+            {
+                const couponCode = window.parityDealsInfo.couponCode;
+                // Only apply coupon if it exists AND came from the API
+                if (couponCode && window.parityDealsInfo.couponFromAPI)
+                {
+                    paymentPlanLink.href = originalPaymentPlanHref + "&coupon=" + couponCode;
+                } else
+                {
+                    paymentPlanLink.href = originalPaymentPlanHref;
+                }
+            }
         };
 
         // Function to calculate discounted price based on percentage or fixed amount
-        const calculateDiscountedPrice = function ()
+        const calculateDiscountedPrice = function (isPaymentPlan = false)
         {
             const discountPercentage = parseInt(window.parityDealsInfo.discountPercentage) || 0;
             const discountDollars = parseInt(window.parityDealsInfo.discountDollars) || 0;
-            let discountedPrice = originalPrice;
+            const basePrice = isPaymentPlan ? originalPaymentPlanPrice : originalPrice;
+            let discountedPrice = basePrice;
 
             // Apply percentage discount if available, otherwise use dollar discount
             if (discountPercentage > 0)
             {
-                discountedPrice = originalPrice - (originalPrice * discountPercentage / 100);
-            } else if (discountDollars > 0)
+                discountedPrice = basePrice - (basePrice * discountPercentage / 100);
+            } else if (discountDollars > 0 && !isPaymentPlan)
             {
-                discountedPrice = originalPrice - discountDollars;
+                // Only apply dollar discount to one-time payment, not payment plan
+                discountedPrice = basePrice - discountDollars;
             }
 
             // Ensure the price is not negative and round to whole number
@@ -113,13 +136,14 @@
         // Update discount display information
         const updateDiscountDisplay = function ()
         {
+            // Update one-time payment discount display
             const discountedPriceValue = document.getElementById('discounted-price-value');
             const originalPriceSpan = document.getElementById('original-price');
             const discountAmountSpan = document.getElementById('discount-amount');
 
             if (discountedPriceValue && originalPriceSpan && discountAmountSpan)
             {
-                const discountedPrice = calculateDiscountedPrice();
+                const discountedPrice = calculateDiscountedPrice(false);
                 const discountPercentage = parseInt(window.parityDealsInfo.discountPercentage) || 0;
                 const discountDollars = parseInt(window.parityDealsInfo.discountDollars) || 0;
 
@@ -138,30 +162,78 @@
                     discountAmountSpan.textContent = `$${discountDollars} OFF`;
                 }
             }
+
+            // Update payment plan discount display
+            const paymentPlanDiscountedPriceValue = document.getElementById('payment-plan-discounted-price-value');
+            const paymentPlanOriginalPriceSpan = document.getElementById('payment-plan-original-price');
+            const paymentPlanDiscountAmountSpan = document.getElementById('payment-plan-discount-amount');
+
+            if (paymentPlanDiscountedPriceValue && paymentPlanOriginalPriceSpan && paymentPlanDiscountAmountSpan)
+            {
+                const paymentPlanDiscountedPrice = calculateDiscountedPrice(true);
+                const discountPercentage = parseInt(window.parityDealsInfo.discountPercentage) || 0;
+
+                // Update the discounted price for payment plan
+                paymentPlanDiscountedPriceValue.textContent = paymentPlanDiscountedPrice;
+
+                // Update original price display for payment plan
+                paymentPlanOriginalPriceSpan.textContent = `$${originalPaymentPlanPrice}`;
+
+                // Update the discount text for payment plan (only percentage for payment plan)
+                if (discountPercentage > 0)
+                {
+                    paymentPlanDiscountAmountSpan.textContent = `${discountPercentage}% OFF`;
+                }
+            }
         };
 
-        // Function to update UI based on coupon code availability
+        // Function to update UI based on discount availability (regardless of coupon codes)
         const updateUI = function ()
         {
-            const hasCouponCode = !!window.parityDealsInfo.couponCode;
+            // Check if we have any discount available (percentage or dollar amount)
+            const hasDiscount = parseInt(window.parityDealsInfo.discountPercentage) > 0 ||
+                window.parityDealsInfo.discountDollars;
 
-            // Show/hide payment plan container based on coupon code
+            const hasCouponCode = !!window.parityDealsInfo.couponCode;
+            const isParityDealsDiscount = window.parityDealsInfo.couponFromAPI;
+
+            // Show/hide payment plan container based on coupon code from API
             if (paymentPlanContainer)
             {
-                paymentPlanContainer.style.display = hasCouponCode ? 'none' : 'block';
+                if (isParityDealsDiscount)
+                {
+                    paymentPlanContainer.style.display = 'none';
+                } else
+                {
+                    paymentPlanContainer.style.display = 'block';
+                }
             }
 
-            // Update frequency element text
-            if (frequencyElement)
+            // Update frequency element text based on whether payment plan is showing (like the other implementation)
+            const onetimeFrequencyDivs = document.querySelectorAll('.frequency.one-time-payment');
+            onetimeFrequencyDivs.forEach(div =>
             {
-                frequencyElement.textContent = hasCouponCode ? 'Lifetime Access' : 'Best Value';
-            }
+                if (isParityDealsDiscount)
+                {
+                    div.textContent = 'Lifetime Access';
+                } else
+                {
+                    div.textContent = 'Best Value';
+                }
+            });
 
-            // Update price display - show discounted price when coupon code is present
+            // Update price display - show discounted price when discount is available (regardless of coupon code)
             if (fullPriceDiv && discountedPriceDiv)
             {
-                fullPriceDiv.style.display = hasCouponCode ? 'none' : 'block';
-                discountedPriceDiv.style.display = hasCouponCode ? 'block' : 'none';
+                fullPriceDiv.style.display = hasDiscount ? 'none' : 'block';
+                discountedPriceDiv.style.display = hasDiscount ? 'block' : 'none';
+            }
+
+            // Update payment plan price display - show discounted price when discount is available
+            if (paymentPlanFullPriceDiv && paymentPlanDiscountedPriceDiv)
+            {
+                paymentPlanFullPriceDiv.style.display = hasDiscount ? 'none' : 'block';
+                paymentPlanDiscountedPriceDiv.style.display = hasDiscount ? 'block' : 'none';
             }
 
             // Update discount display values
