@@ -129,6 +129,7 @@
     <link href="css/swiper.css" rel="stylesheet">
     <link href="css/magnific-popup.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
+    <link href="css/countdown-timer.css" rel="stylesheet">
 
     <!-- Favicon  -->
     <link rel="icon">
@@ -136,11 +137,6 @@
 
 <body data-spy="scroll" data-target=".fixed-top">
     <div class="fixed-top">
-        <!-- Notification Bar -->
-        <div id="notification-banner" class="alert alert-info promo-alert text-center mb-0" role="alert"
-            style="background-color: #E56717; color: white; display: none;">
-        </div>
-
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark">
 
@@ -2743,7 +2739,7 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-lg-4">
+                <div class="col-lg-4" id="onetime-payment-container">
                     <!-- Card-->
                     <div class="card best-value">
                         <div class="card-body">
@@ -2768,7 +2764,7 @@
                                 <div class="frequency mt-3 mb-4 one-time-payment">Best Value</div>
                             </div>
                             <div class="button-wrapper">
-                                <a id="one-time-payment-link" class="btn-solid-lg"
+                                <a id="onetime-payment-link" class="btn-solid-lg-small-padding"
                                     href="https://learn.dotnetacademy.io/enroll/2141091?price_id=2894278">START
                                     WATCHING</a>
                             </div>
@@ -2842,7 +2838,7 @@
                     <div class="card best-value">
                         <div class="card-body">
                             <div class="card-title best-value">PAYMENT PLAN</div>
-                            <div id="payment-plan-full-price" class="mb-2">
+                            <div id="full-price" class="mb-2">
                                 <div>
                                     <span class="currency best-value">$</span>
                                     <span class="value best-value" style="font-size: 4.3rem;">129</span><span
@@ -2850,20 +2846,20 @@
                                 </div>
                                 <div class="frequency mb-4 mt-3">4 Monthly Payments</div>
                             </div>
-                            <div id="payment-plan-discounted-price" class="mb-2">
+                            <div id="discounted-price" class="mb-2">
                                 <div>
                                     <span class="currency best-value">$</span>
-                                    <span id="payment-plan-discounted-price-value" class="value best-value"
+                                    <span id="discounted-monthly-price-value" class="value best-value"
                                         style="font-size: 4.3rem;"></span><span class="frequency">/month</span>
                                 </div>
                                 <div>
-                                    <span id="payment-plan-original-price" class="full-price">$129</span><span
-                                        id="payment-plan-discount-amount" class="save-value best-value">OFF</span>
+                                    <span id="original-monthly-price" class="full-price">$129</span><span
+                                        id="monthly-discount-amount" class="save-value best-value">OFF</span>
                                 </div>
                                 <div class="frequency mb-4 mt-3">4 Monthly Payments</div>
                             </div>
                             <div class="button-wrapper">
-                                <a id="payment-plan-link" class="btn-solid-lg"
+                                <a id="payment-plan-link" class="btn-solid-lg-small-padding"
                                     href="https://learn.dotnetacademy.io/enroll/2141091?price_id=3960951">START
                                     WATCHING</a>
                             </div>
@@ -3080,6 +3076,7 @@
     <script src="js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
     <script src="js/scripts.js"></script> <!-- Custom scripts -->
     <script src="js/countdown-timer.js"></script>
+    <script src="js/notification-banner.js"></script>
     <script src="js/parity-deals.js"></script> <!-- Parity deals script -->
     <script src="js/favicon.js"></script>
     <script src="js/navbar-collapse.js"></script>
